@@ -6,11 +6,8 @@ import "./App.css"
 function App() {
   return (
     <BrowserRouter>
-      <div className='App'>
-        <h1>This is the container!</h1>
-      </div>
       <Routes>
-        <Route path='/projectManager' element={ProjectManager} />
+        <Route path='/projectManager' element={<ProjectManager />} />
       </Routes>
     </BrowserRouter>
   )
