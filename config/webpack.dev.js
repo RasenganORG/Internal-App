@@ -20,6 +20,7 @@ const devConfig = {
       name: "container",
       remotes: {
         projectManager: "projectManager@http://localhost:8081/remoteEntry.js",
+        humanResources: "humanResources@http://localhost:8082/remoteEntry.js",
       },
       shared: packageJson.dependencies,
     }),

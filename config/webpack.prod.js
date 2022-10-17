@@ -16,6 +16,7 @@ const prodConfig = {
       name: "container",
       remotes: {
         ProjectManagerApp: `ProjectManagerApp@${domain}/projectManager/latest/remoteEntry.js`,
+        HumanResourcesApp: `HumanResourcesApp@${domain}/humanResources/latest/remoteEntry.js`,
       },
       shared: packageJson.dependencies,
     }),
