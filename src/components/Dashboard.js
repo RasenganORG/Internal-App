@@ -1,5 +1,5 @@
 import React from "react"
-import { useNavigate } from "react-router-dom"
+import { Outlet, useNavigate } from "react-router-dom"
 
 function Dashboard() {
   const navigate = useNavigate()
@@ -8,6 +8,7 @@ function Dashboard() {
       <div>Dashboard</div>
       <button onClick={() => navigate("/projectManager")}>PM</button>
       <button onClick={() => navigate("/humanResources")}>HR</button>
+      {/* <Outlet /> */}
     </div>
   )
 }
