@@ -16,8 +16,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "start-webpack": "webpack serve --config config/webpack.dev.js"
+    "start": "webpack serve --config config/webpack.dev.js"
   },
   "eslintConfig": {
     "extends": [

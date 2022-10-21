@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react"
-import { mount } from "projectManager/ProjectManagerApp"
+import { mount } from "pm/ProjectManagerApp"
 
 function ProjectManager() {
   const ref = useRef(null)

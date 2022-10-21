@@ -16,8 +16,8 @@ function App() {
         <Suspense fallback={<Progress />}>
           <Routes>
             <Route path='/' element={<Dashboard />} />
-            <Route path='/projectManager/*' element={<ProjectManagerLazy />} />
-            <Route path='/humanResources/*' element={<HumanResourcesLazy />} />
+            <Route path='/pm/*' element={<ProjectManagerLazy />} />
+            <Route path='/hr/*' element={<HumanResourcesLazy />} />
             <Route path='*' element={<h1>nu stiu boss</h1>} />
           </Routes>
         </Suspense>
