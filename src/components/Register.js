@@ -1,12 +1,12 @@
 import React from "react";
+import axios from "axios";
 import "antd/dist/antd.css";
 import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined, PhoneOutlined } from '@ant-design/icons';
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useState } from "react";
 
-export default function Register() {
+export default function Register({ setUser }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,11 +17,21 @@ export default function Register() {
 
   const { name, email, phoneNumber, password, password2 } = formData
 
-  const navigate = useNavigate()
+  const register = async () => {
+    const REGISTER_URL = "http://localhost:8083/api/user"
+    const userData = {
+      name,
+      email,
+      password,
+      phoneNumber,
+    }
+    const response = await axios.post(REGISTER_URL, userData)
 
-
-
-
+    if (response.data) {
+      localStorage.setItem('user', JSON.stringify(response.data))
+      setUser(response.data)
+    }
+  }
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -30,25 +40,14 @@ export default function Register() {
   }
   const onSubmit = () => {
     if (password !== password2) {
-      toast.error("Passwords do not match")
+      console.log('passwords do not match')
     } else {
-      const userData = {
-        name,
-        email,
-        password,
-        avatar: '',
-        projectsAssignedTo: [],
-        phoneNumber,
-
-      }
-      dispatch(register(userData))
+      register()
     }
-
   }
 
   return (
     <div className="authenticationWrapper">
-
       <Form name="normal_register" className="authenticationForm" onFinish={onSubmit}>
         <Form.Item>
           <h2>Register </h2>
@@ -151,7 +150,6 @@ export default function Register() {
             onChange={onChange}
           />
         </Form.Item>
-
 
         <Form.Item>
           <Button type="primary" htmlType="submit" className="register-form-button" size="large" style={{ width: "100%" }}>

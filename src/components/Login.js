@@ -1,26 +1,32 @@
 import React from "react";
 import "antd/dist/antd.css";
+import axios from "axios";
 import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate, useLocation } from 'react-router-dom'
 
+export default function LogIn({ setUser }) {
+  const LOGIN_URL = "http://localhost:8083/api/getLoggedUser/"
 
-export default function LogIn() {
+  const login = async () => {
+    axios
+      .get(`${LOGIN_URL}${formData.email}/?pwd=${formData.password}`)
+      .then(response => {
+        const user = response.data;
+        localStorage.setItem('user', JSON.stringify(user))
+        setUser(user)
+      })
+      .catch(error => console.error(error.response.data))
+  }
+
   const [formData, setFormData] = useState({
-    username: "",
+    email: "",
     password: ""
   })
 
-
   const { email, password } = formData
-
-  const navigate = useNavigate()
-  let location = useLocation()
-
-  let from = location.state?.from?.pathname || '/';
-
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -34,6 +40,7 @@ export default function LogIn() {
       email,
       password,
     }
+    login()
   }
 
   return (
@@ -88,7 +95,6 @@ export default function LogIn() {
           </Button>
 
           <p>Don't have an account? <Link to="../register"> <a href="">Register</a> </Link></p>
-
         </Form.Item>
       </Form>
     </div>
