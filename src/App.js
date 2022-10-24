@@ -7,18 +7,24 @@ import "./App.css"
 
 const ProjectManagerLazy = lazy(() => import("./components/ProjectManager"))
 const HumanResourcesLazy = lazy(() => import("./components/HumanResources"))
+const LoginLazy = lazy(() => import("./components/Login"))
 
 function App() {
   return (
     <BrowserRouter>
       <div>
-        <Header />
         <Suspense fallback={<Progress />}>
           <Routes>
-            <Route path='/' element={<Dashboard />} />
-            <Route path='/pm/*' element={<ProjectManagerLazy />} />
-            <Route path='/hr/*' element={<HumanResourcesLazy />} />
-            <Route path='*' element={<h1>nu stiu boss</h1>} />
+            <Route path='/' element={<Dashboard />}>
+              <Route index element={<Header />} />
+              <Route path='/pm/*' element={<ProjectManagerLazy />} />
+              <Route path='/hr/*' element={<HumanResourcesLazy />} />
+              <Route path='/login' element={<LoginLazy />} />
+            </Route>
+            <Route
+              path='*'
+              element={<h1>404 internii nu au gasit pagina</h1>}
+            />
           </Routes>
         </Suspense>
       </div>
