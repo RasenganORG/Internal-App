@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.authenticationWrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	min-height: 100vh;	
+}
+
+.authenticationForm {
+  width:20vw;
+}

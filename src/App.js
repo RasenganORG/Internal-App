@@ -7,6 +7,8 @@ import "./App.css"
 
 const ProjectManagerLazy = lazy(() => import("./components/ProjectManager"))
 const HumanResourcesLazy = lazy(() => import("./components/HumanResources"))
+const LoginLazy = lazy(() => import("./components/Login"))
+const RegisterLazy = lazy(() => import("./components/Register"))
 
 function App() {
   return (
@@ -18,6 +20,9 @@ function App() {
             <Route path='/' element={<Dashboard />} />
             <Route path='/pm/*' element={<ProjectManagerLazy />} />
             <Route path='/hr/*' element={<HumanResourcesLazy />} />
+            <Route path='/login/*' element={<LoginLazy />} />
+            <Route path='/register/*' element={<RegisterLazy />} />
+
             <Route path='*' element={<h1>nu stiu boss</h1>} />
           </Routes>
         </Suspense>
